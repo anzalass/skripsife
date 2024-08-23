@@ -107,7 +107,7 @@ export default function TabelFaq({ faq }: { faq: FaqType[] }) {
           title: "Berhasil",
           text: "Menghapus FAQ",
         });
-        // setRender(true);
+        setRender(true);
       })
       .catch((err) => {
         Swal.fire({

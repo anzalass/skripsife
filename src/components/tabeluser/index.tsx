@@ -216,7 +216,7 @@ export default function TabelUser({
                   onClick={() => setOpen(true)}
                   className="border-2 h-[40px] px-2 rounded-md"
                 >
-                  Tambah Pengguna {"+"}
+                  Tambah Pelanggan {"+"}
                 </button>
               </div>
             </div>

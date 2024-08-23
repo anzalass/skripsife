@@ -7,6 +7,7 @@ const nextConfig = {
       "mediagrasi.net",
       "subsystem.indihome.co.id",
       "lh3.googleusercontent.com",
+      "images.tokopedia.net",
     ], // Tambahkan domain yang sesuai dengan host gambar Anda
   },
 };

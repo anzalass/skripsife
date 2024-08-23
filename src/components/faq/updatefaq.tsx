@@ -45,6 +45,7 @@ export default function Updatefaq(props: { setOpen: any; id: any }) {
               icon: "success",
             });
             setRender(true);
+            props.setOpen(false);
           })
           .catch((err) => {
             Swal.fire({
@@ -60,7 +61,7 @@ export default function Updatefaq(props: { setOpen: any; id: any }) {
 
   return (
     <div className="w-[90%]  fixed left-20 z-10 mx-auto h-screen   top-0 ">
-      <div className="w-[80%] shadow-xl p-3 relative rounded-lg bg-slate-200 h-[50vh] z-10 mx-auto mt-[150px] ">
+      <div className="w-[80%] shadow-xl p-3 relative rounded-lg bg-slate-200 h-[55vh] z-10 mx-auto mt-[150px] ">
         <FaWindowClose
           onClick={() => props.setOpen(false)}
           className="absolute right-2"

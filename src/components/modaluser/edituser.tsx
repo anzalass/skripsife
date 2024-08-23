@@ -31,6 +31,7 @@ export default function Edituser(props: { setOpen: any; id: any }) {
     if (pelanggan) {
       await axios
         .put(`${server}update-pelanggan/${props.id}`, {
+          id: props.id,
           name: name,
           status: status,
           alamat: alamat,

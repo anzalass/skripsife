@@ -13,8 +13,8 @@ export default function Createfaq(props: { setOpen: any }) {
   const CreateFaq = async () => {
     setRender(false);
     Swal.fire({
-      title: "Are you sure?",
-      text: "Ingin membuat invoice bulan  ini?",
+      title: "Kamu yakin",
+      text: "Ingin membuat FaQ?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -34,6 +34,7 @@ export default function Createfaq(props: { setOpen: any }) {
               icon: "success",
             });
             setRender(true);
+            props.setOpen(false);
           })
           .catch((err) => {
             Swal.fire({

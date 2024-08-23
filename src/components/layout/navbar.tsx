@@ -33,7 +33,8 @@ export default function Navbar() {
                   src={data.user?.image!}
                   alt=""
                 />
-              ) : null}
+              ) : // <div className="">hallo</div>
+              null}
               <span className="hidden md:block lg:block xl:block">
                 {data && data.user?.name}{" "}
               </span>
