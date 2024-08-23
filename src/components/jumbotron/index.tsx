@@ -38,14 +38,28 @@ export default function Jumbotron() {
                 </button>
               </Link>
             ) : null}{" "}
+            {data?.user.role === "member" ? (
+              <Link
+                href={
+                  "https://api.whatsapp.com/send/?phone=62859102604165&text&type=phone_number&app_absent=0"
+                }
+              >
+                <button
+                  type="button"
+                  className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-black dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                >
+                  WhatsApp Admin
+                </button>
+              </Link>
+            ) : null}{" "}
           </div>
         </div>
         <div className="flex justify-center items-center w-[40%]">
-          <img
+          {/* <img
             src="/ai.png"
             className="w-[400px] h-[400px] object-contain"
             alt="AI"
-          />
+          /> */}
         </div>
       </div>
     </div>

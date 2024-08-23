@@ -2,8 +2,8 @@ import { getToken } from "next-auth/jwt";
 import { NextFetchEvent, NextMiddleware, NextRequest, NextResponse } from "next/server";
 
 
-const onlyAdmin = ["/admin/home", "/admin/pengguna", "/admin/pembayaran", "/admin/pengaduan", "/admin/pelanggan", "/admin/faq" ]
-const wasLogin = ["/auth/masuk"]
+const onlyAdmin = ["/admin/home", "/admin/pengguna", "/admin/pembayaran", "/admin/pengaduan", "/admin/pelanggan", "/admin/faq", "/admin/dataset" ,"/admin/chatuser" ]
+const wasLogin = ["/admin/masuk"]
 
 
 
@@ -15,13 +15,19 @@ export default function withAuth(middleware: NextMiddleware, requireAuth: string
                 req,
                 secret: process.env.NEXT_AUTH_SECRET
             });
+
+            if (token && token.role !== "admin" && onlyAdmin.includes(pathname) ) {
+                return NextResponse.redirect(new URL("/", req.url));
+            }
+
+
             // Jika pengguna sudah login dan mencoba mengakses rute "/auth/masuk", redirect ke rute beranda ("/")
-            if (pathname === "/auth/masuk" && token && token.role === "admin") {
-                return NextResponse.redirect(new URL("/admin/home", req.url));
+            if (pathname === "/admin/masuk" && token && token.role === "admin") {
+                return NextResponse.redirect(new URL("/admin/pelanggan", req.url));
             }
 
             // Jika rute membutuhkan autentikasi dan pengguna belum login
-            if (requireAuth.includes(pathname) && !token && pathname !== "/auth/masuk") {
+            if (requireAuth.includes(pathname) && !token && pathname !== "/admin/masuk") {
                 const url = new URL("/", req.url);
                 url.searchParams.set("callbackUrl", encodeURI(req.url));
                 return NextResponse.redirect(url);
@@ -34,10 +40,7 @@ export default function withAuth(middleware: NextMiddleware, requireAuth: string
             }
 
             // Jika pengguna sudah login dan mencoba mengakses rute yang hanya untuk admin, redirect ke rute beranda ("/")
-            if (token && token.role !== "admin" && onlyAdmin.includes(pathname) ) {
-                return NextResponse.redirect(new URL("/", req.url));
-            }
-
+         
       
             // Jika pengguna sudah login dan mencoba mengakses rute yang hanya untuk pengguna yang belum login, redirect ke rute beranda ("/")
             if (token && wasLogin.includes(pathname)) {

@@ -103,7 +103,7 @@ export default function UpdateDataset(props: { setOpen: any; id: any }) {
           className="absolute right-2"
           size={25}
         />
-        <h1 className="text-xl mt-4 font-[500]">Update Faq </h1>
+        <h1 className="text-xl mt-4 font-[500]">Update Dataset </h1>
         <h1>{}</h1>
         <div className="w-full p-3 mt-5">
           <div className="mb-5">

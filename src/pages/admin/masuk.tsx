@@ -3,6 +3,7 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Masuk() {
   const [email, setEmail] = useState("");
@@ -24,9 +25,22 @@ export default function Masuk() {
       });
       if (!res?.error) {
         setLoading(false);
-        push("/admin/home");
+        Swal.fire({
+          title: "Berhasil",
+          showConfirmButton: false,
+          timer: 1000,
+          icon: "success",
+        });
+        push("/admin/pelanggan");
       } else {
         setLoading(false);
+        Swal.fire({
+          title: "Login gagal",
+          text: "email atau password salah",
+          showConfirmButton: false,
+          timer: 2000,
+          icon: "error",
+        });
         setErr("Email or Password incorrect");
       }
     } catch (error: any) {

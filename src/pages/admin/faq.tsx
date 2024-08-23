@@ -3,6 +3,7 @@ import Sidebaradmin from "@/components/layout/sidebaradmin";
 import { RenderTableUser } from "@/context/renderTableUser";
 
 import { server } from "@/server";
+import { useSession } from "next-auth/react";
 import { useContext, useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -21,6 +22,7 @@ export default function Faq(props: { faq: FaqType[] }) {
   const [active, setActive] = useState(6);
   const { render, setRender } = useContext(RenderTableUser);
   const [faq, setFaq] = useState(props.faq);
+  const { data } = useSession();
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(`${server}faq`);
@@ -33,7 +35,7 @@ export default function Faq(props: { faq: FaqType[] }) {
     <div className="w-full">
       {/*  Template admin*/}
       {open ? null : (
-        <div className="relative z-50">
+        <div className="fixed z-50">
           <RxHamburgerMenu
             onClick={() => setOpen(true)}
             className="absolute left-3 top-3 z-50"
@@ -42,12 +44,19 @@ export default function Faq(props: { faq: FaqType[] }) {
         </div>
       )}
 
-      {open ? <Sidebaradmin open={open} setOpen={setOpen} active={active} /> : null}
+      {open ? (
+        <Sidebaradmin open={open} setOpen={setOpen} active={active} />
+      ) : null}
       {/* Template Admin */}
-      <div className="w-[94%] mx-auto  h-[100vh] pt-3">
+      <div className="w-[94%] mx-auto pt-3">
         <div className="w-[97%] mx-auto  h-[70px]  p-3  border-b-[1px] border-black">
-          <h1 className="text-xl font-[500] pl-3 mt-2">Faq</h1>
-          <div className="w-full mt-[60px]">
+          <div className="justify-between flex">
+            <h1 className="text-xl font-[500] pl-3 mt-2">Faq</h1>
+            <h1 className="text-lg font-[500] pl-3 mt-2">
+              Hello Admin {data?.user?.name}{" "}
+            </h1>
+          </div>
+          <div className="w-full mt-[60px] pb-[100px]">
             {faq ? <TabelFaq faq={faq} /> : null}
           </div>
         </div>

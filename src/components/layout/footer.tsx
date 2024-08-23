@@ -9,11 +9,11 @@ export default function Footer() {
             href="https://flowbite.com/"
             className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
           >
-            <img
+            {/* <img
               src="https://mediagrasi.net/wp-content/uploads/2023/02/Asset-2@2x-2-e1676605352394.png"
               className="h-10"
               alt="Flowbite Logo"
-            />
+            /> */}
             {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Flowbite
           </span> */}

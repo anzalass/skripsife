@@ -1,6 +1,8 @@
 import Sidebaradmin from "@/components/layout/sidebaradmin";
 import { RenderTableUser } from "@/context/renderTableUser";
 import { server } from "@/server";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -11,7 +13,7 @@ export default function Chatuser() {
   const [chat, setchat] = useState<any>([]);
   const [searchres, setsearchres] = useState<any>([]);
   const [cari, setCari] = useState("");
-
+  const { data } = useSession();
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(`${server}allchat`);
@@ -51,7 +53,12 @@ export default function Chatuser() {
       {/* Template Admin */}
       <div className="w-[94%] mx-auto  min-h-screen pt-3">
         <div className="w-[97%] mx-auto  h-[70px]  p-3  border-b-[1px] border-black">
-          <h1 className="text-xl font-[500] pl-3 mt-2">Chat User</h1>
+          <div className="justify-between flex">
+            <h1 className="text-xl font-[500] pl-3 mt-2">Chat dari User</h1>
+            <h1 className="text-lg font-[500] pl-3 mt-2">
+              Hello Admin {data?.user?.name}{" "}
+            </h1>
+          </div>
           <div className="w-full mt-[60px]">
             <div className="w-auto mx-auto">
               <input
@@ -69,7 +76,11 @@ export default function Chatuser() {
                       className="w-[400px] p-3 mt-2 mb-4 border-[1px] rounded-md"
                     >
                       <h1 className="text-[17px] font-medium">{c.text}</h1>
-                      <div className="underline">balas</div>
+                      <Link
+                        href={`https://api.whatsapp.com/send/?phone=${c.no_whatsapp}&text&type=phone_number&app_absent=0`}
+                      >
+                        <div className="underline">balas</div>
+                      </Link>
                     </div>
                   ))}
               </div>

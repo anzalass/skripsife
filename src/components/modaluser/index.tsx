@@ -52,7 +52,7 @@ export default function AddUser(props: { open: boolean; setOpen: any }) {
   }, [render]);
   return (
     <div className="w-[90%]  fixed left-20 z-10 mx-auto h-screen   top-0 ">
-      <div className="w-[50%] shadow-xl p-3 relative rounded-lg bg-slate-200 h-[80vh] z-10 mx-auto mt-10 ">
+      <div className="w-[50%] shadow-xl p-3 relative rounded-lg bg-slate-200 h-[90vh] z-10 mx-auto mt-10 ">
         <FaWindowClose
           onClick={() => props.setOpen(false)}
           className="absolute right-2"
@@ -65,6 +65,7 @@ export default function AddUser(props: { open: boolean; setOpen: any }) {
               onChange={(e: any) => setId(e.target.value)}
               type="text"
               value={id}
+              required={true}
               className="h-[45px] rounded-lg w-full pl-3"
               placeholder="ID"
             />
@@ -74,6 +75,7 @@ export default function AddUser(props: { open: boolean; setOpen: any }) {
               onChange={(e: any) => setName(e.target.value)}
               type="text"
               value={name}
+              required={true}
               className="h-[45px] rounded-lg w-full pl-3"
               placeholder="Nama"
             />
@@ -82,6 +84,7 @@ export default function AddUser(props: { open: boolean; setOpen: any }) {
             <textarea
               onChange={(e: any) => setalamat(e.target.value)}
               value={alamat}
+              required={true}
               className="h-[55px] rounded-md w-full pl-2 pt-2"
               placeholder="Alamat"
             />
@@ -91,6 +94,7 @@ export default function AddUser(props: { open: boolean; setOpen: any }) {
               onChange={(e: any) => setPaketLangganan(e.target.value)}
               type="text"
               value={paketLangganan}
+              required={true}
               className="h-[45px] rounded-lg w-full pl-3"
               placeholder="Paket Langganan"
             />
@@ -100,6 +104,7 @@ export default function AddUser(props: { open: boolean; setOpen: any }) {
               onChange={(e: any) => setHargaLangganan(parseInt(e.target.value))}
               type="number"
               value={hargaLangganan}
+              required={true}
               className="h-[45px] rounded-lg w-full pl-3"
               placeholder="Harga Langganan"
             />
@@ -110,6 +115,7 @@ export default function AddUser(props: { open: boolean; setOpen: any }) {
               id=""
               onChange={(e: any) => setStatus(e.target.value)}
               value={status}
+              required={true}
             >
               <option value="">Pilih</option>
               <option value="aktif">Aktif</option>

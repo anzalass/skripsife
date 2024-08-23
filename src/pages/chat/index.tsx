@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import { IoSendSharp } from "react-icons/io5";
 import { FaWhatsapp } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Chat() {
   const { data } = useSession();
@@ -73,7 +74,7 @@ export default function Chat() {
         Swal.fire({
           icon: "warning",
           title: " Yahh",
-          text: "Kesempatan hari ini sudah habis silahkan kembali lagi esok hari, jika masih ada pertanyaan silahkan klik tombol whatsapp di pojok kanan atas",
+          text: "Kesempatan hari ini sudah habis silahkan kembali lagi esok hari, jika masih ada pertanyaan silahkan hubungi admin kami melalui whatsapp 0877-2224-1234",
         });
       }
       setRender2(true);
@@ -91,20 +92,24 @@ export default function Chat() {
   return (
     <>
       {modalinsertid ? (
-        <Modalinsertid />
+        <Modalinsertid open={modalinsertid} setOpen={setModalInsertid} />
       ) : (
         <div className="w-[80%] mx-auto relative">
           <div className="h-[80px] backdrop:rounded-lg p-2 w-[80%] rounded-lg backdrop-blur-xl fixed border-b-[1px] justify-between items-center flex">
             <div className="flex gap-2">
-              <button className="border-[1px] p-2 text-sm font-medium rounded-md bg-black text-white">
-                Kembali
-              </button>
-              <h1 className="font-medium text-lg mt-1">Asisstant</h1>
+              <Link href={"/"}>
+                <button className="border-[1px] p-2 text-sm font-medium rounded-md bg-black text-white">
+                  Kembali
+                </button>
+              </Link>
+              <h1 className="font-medium  mt-1 p-1 px-2 rounded-md bg-white">
+                Asisstant
+              </h1>
             </div>
-            <button className="flex border-[1px] p-2 text-sm font-medium rounded-md bg-black text-white">
+            {/* <button className="flex border-[1px] p-2 text-sm font-medium rounded-md bg-black text-white">
               WhatsApp Admin
               <FaWhatsapp className="ml-2 mt-0" size={20} />
-            </button>
+            </button> */}
           </div>
           <div className="w-full  px-3 h-[88vh] overflow-y-auto">
             <div className="mt-[80px] overflow-y-auto  mb-2 ">

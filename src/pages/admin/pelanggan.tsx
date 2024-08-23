@@ -2,6 +2,7 @@ import Sidebaradmin from "@/components/layout/sidebaradmin";
 import TabelUser from "@/components/tabeluser";
 import { RenderTableUser } from "@/context/renderTableUser";
 import { server } from "@/server";
+import { useSession } from "next-auth/react";
 import { useContext, useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -21,6 +22,7 @@ export default function Pelanggan(props: { pengguna: PelangganType[] }) {
   const [active, setActive] = useState(3);
   const { render, setRender } = useContext(RenderTableUser);
   const [pengguna, setPengguna] = useState(props.pengguna);
+  const { data } = useSession();
 
   useEffect(() => {
     async function fetchData() {
@@ -35,7 +37,7 @@ export default function Pelanggan(props: { pengguna: PelangganType[] }) {
     <div className="w-full">
       {/*  Template admin*/}
       {open ? null : (
-        <div className="relative">
+        <div className="fixed">
           <RxHamburgerMenu
             onClick={() => setOpen(true)}
             className="absolute left-3 top-3 "
@@ -51,8 +53,13 @@ export default function Pelanggan(props: { pengguna: PelangganType[] }) {
 
       <div className="w-[94%] mx-auto  h-[100vh] pt-3">
         <div className="w-[97%] mx-auto  h-[70px]  p-3  border-b-[1px] border-black">
-          <h1 className="text-xl font-[500] pl-3 mt-2">Pengguna</h1>
-          <div className="w-full mt-[40px]">
+          <div className="justify-between flex">
+            <h1 className="text-xl font-[500] pl-3 mt-2">Pelanggan</h1>
+            <h1 className="text-lg font-[500] pl-3 mt-2">
+              Hello Admin {data?.user?.name}{" "}
+            </h1>
+          </div>
+          <div className="w-full mt-[40px]  pb-[100px]">
             {pengguna ? (
               <TabelUser pelanggan={pengguna} />
             ) : (
